@@ -25,7 +25,8 @@ def elipsa(theta, *args):
 n = 100
 thetaRange = (0, 2.*np.pi)
 theta = np.sort(np.random.random(n)*(thetaRange[1]-thetaRange[0])+thetaRange[0])
-thetaR = np.linspace(thetaRange[0], thetaRange[1], 100)
+m = 100
+thetaR = np.linspace(thetaRange[0], thetaRange[1], m)
 x, y = elipsa(theta, [a, b, h, k, alfa])
 c = 0.1
 x = x + c*(np.random.random(n)-0.5)
@@ -48,10 +49,16 @@ def MSE(*args):
     Ker za rotirano elipso parametrična spremenljivka theta ne sovpada enako, 
     poiščemo točko, ki se najbolj prilega naši oceni. """
     xt, yt = elipsa(thetaR, *args)
-    vsota = 0.
+    # POSKUSI in sestavi svojo cenovno funkcijo ter poglej kako se spreminjajo rešitve glede na tvojo mero "optimalnosti"
+    vsota1 = 0.
     for i in range(n):
-        vsota += np.power( np.amin( np.sqrt( np.power(x[i]-xt, 2.) + np.power(y[i]-yt, 2.) ) ), 2)
-    return vsota/n
+        vsota1 += np.power( np.amin( np.sqrt( np.power(x[i]-xt, 2.) + np.power(y[i]-yt, 2.) ) ), 2)
+    vsota1 /= n
+    vsota2 = 0.
+    for i in range(m):
+        vsota2 += np.power( np.amin( np.sqrt( np.power(x-xt[i], 2.) + np.power(y-yt[i], 2.) ) ), 2)
+    vsota2 /= m
+    return vsota1 + vsota2
 
 def plot(init, color):
     """ Priročna funkcija za hkratno risanje in klicanje metod. """
@@ -71,7 +78,7 @@ def plot(init, color):
 # Oglej si kakšne rezultate dobiš pri različnem številu parametrov, ki jih želimo optimizirati
 # Npr. če vzamemo samo 1 parameter bomo iskali krog, ki se najbolje prilega podatkom!
 plot([1.], "red")
-# plot([1., 1., 0., 0., 0.], "green")
+plot([1., 1., 0., 0., 0.], "green")
 
 # Prikaz grafov
 plt.show()

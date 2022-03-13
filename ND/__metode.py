@@ -14,7 +14,7 @@ def gradSpustND(f, x0, par=[0.1, 0.001]):
         naklon = dfi/delta
         # za vsako komponento naredimo premik
         xN -= faktor*naklon*dx
-    if f(xN) > f(x0): par[1] = 0.5*par[1]
+    if f(xN) > f(x0): par[0] = 0.5*par[0]
     return xN, par
 
 def racunaj(metoda, f, x0, par, N=10, eps=1e-3, konv=False):

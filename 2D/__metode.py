@@ -13,5 +13,5 @@ def gradSpust2D(f, x0, y0, par=[0.1, 0.001]):
     xN = x0 - faktor*naklonX
     yN = y0 - faktor*naklonY
     # Ali lahko izboljšamo konvergenco?
-    # if f([xN, yN]) > f([x0, y0]): par[1] = 0.5*par[1]
+    if f([xN, yN]) > f([x0, y0]): par[0] = 0.5*par[0]
     return xN, yN, par
