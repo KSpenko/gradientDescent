@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.animation as animation
 
+from IPython.display import HTML
+from IPython.display import display
+
 class animacija2D:
     def __init__(self, f, xInterval, yInterval, fN=20):
         """ Priprava grafa in skiciranje funkcije. """
@@ -100,9 +103,11 @@ class animacija2D:
             maxN = max(maxN, len(self.runs[i]))
         return maxN
 
-    def narisi(self, casAnimacije=500, verbose=0, save=False):
+    def narisi(self, casAnimacije=500, verbose=0, save=False, jupyter=False):
         """ Funkcija za risanje animacij. """
         self.verbose = verbose
         ani = animation.FuncAnimation(self.fig, self.animiraj, np.arange(1, self.maxIteration()), interval=casAnimacije, init_func=self.zacetekAnimacije, repeat=False)
         if save != False: ani.save(save+".gif", dpi=80, writer="imagemagick")
-        plt.show()
+        if jupyter:
+            display(HTML(ani.to_jshtml()))
+        else: plt.show()

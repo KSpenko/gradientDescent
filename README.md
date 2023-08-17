@@ -1,4 +1,4 @@
-# Mafijski vikend 2022 - Numerična delavnica
+# FMF poletna šola 2023 - Numerična delavnica
 
 ## Spust do optimalne rešitve
 
