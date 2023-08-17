@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from keras.utils import to_categorical
 from keras.datasets import cifar10
 
 def bazaPodatkov():
@@ -11,7 +11,7 @@ def bazaPodatkov():
     X_train = X_train / 255.0
     X_test = X_test / 255.0
 
-    y_train = np_utils.to_categorical(y_train)
-    y_test = np_utils.to_categorical(y_test)
+    y_train = to_categorical(y_train)
+    y_test = to_categorical(y_test)
     class_num = y_test.shape[1]
     return (X_train, y_train), (X_test, y_test), class_num
