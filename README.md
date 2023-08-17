@@ -26,6 +26,7 @@ Tekom delavnice si bomo ogledali uporabo metode gradientnega spusta v zelo razno
 * pandas
 * tensorflow
 * keras
+* jupyter
 
 ## Avtor
 

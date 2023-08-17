@@ -7,7 +7,7 @@ from IPython.display import HTML
 from IPython.display import display
 
 class animacija2D:
-    def __init__(self, f, xInterval, yInterval, fN=20):
+    def __init__(self, f, xInterval, yInterval, fN=20, elev=None, azim=None):
         """ Priprava grafa in skiciranje funkcije. """
         self.f = f
         self.xlim = xInterval
@@ -25,6 +25,7 @@ class animacija2D:
 
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(projection='3d')
+        self.ax.view_init(elev=elev, azim=azim)
         self.ax.plot_surface(X, Y, fxy, cmap=cm.coolwarm, linewidth=0, antialiased=False, alpha=0.5)
         self.ax.set_xlabel('x')
         self.ax.set_ylabel('y')
